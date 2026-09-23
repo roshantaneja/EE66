@@ -1,0 +1,11 @@
+# EE 66 Lab 0: Python Bootcamp -- lab dependencies.
+# The launchers (Launch Marimo.command / Launch Marimo.bat) install these
+# automatically the first time you open the lab.
+#
+# Keep these pins in sync with the PEP 723 header at the top of
+# ee66_python_bootcamp.py.
+ipython==8.32.0
+ipywidgets==8.1.5
+numpy==2.2.3
+scipy==1.15.1
+marimo

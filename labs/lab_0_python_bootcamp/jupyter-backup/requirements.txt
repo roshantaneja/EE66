@@ -1,0 +1,8 @@
+# EE 66 Lab 0: Python Bootcamp -- Jupyter fallback dependencies.
+# The launchers (Launch Notebook.command / Launch Notebook.bat) install these
+# automatically the first time you open the notebook.
+ipython==8.32.0
+ipywidgets==8.1.5
+numpy==2.2.3
+scipy==1.15.1
+notebook
