@@ -1,8 +1,0 @@
-[ai]
-# AI use is not permitted in EE 66 labs. This is the proposed UI guard.
-# Supported by marimo 0.23.9+. On 0.18 this is harmless but may not hide the AI UI.
-enabled = false
-
-[completion]
-# Keep third-party AI completion integrations disabled as well.
-copilot = false

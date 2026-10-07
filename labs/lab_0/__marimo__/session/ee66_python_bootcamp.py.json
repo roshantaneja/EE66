@@ -1,0 +1,964 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.24.2",
+    "script_metadata_hash": "2cec58b19954f68751446f546d865ded"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "793748aa35209dfcaf77b403f8e17ac5",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"ee-66-python-bootcamp\">EE 66 Python Bootcamp</h1>\n<h3 id=\"ee-66-introduction-to-signals-dynamics-and-information-fall-2026\">EE 66: Introduction to Signals, Dynamics, and Information, Fall 2026</h3></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "c49f963b0fb71b58fa2677305fa56d1b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"table-of-contents\">Table of Contents</h1>\n<ul>\n<li><a href=\"#install-test\">Install Test</a></li>\n<li><a href=\"#overview\">Overview</a></li>\n<li><a href=\"#questions\">Assistance</a></li>\n<li><a href=\"#python\">Python</a><ul>\n<li><a href=\"#fnvar\">Functions and Variables</a></li>\n<li><a href=\"#ctrl\">Control Flow</a></li>\n<li><a href=\"#lst\">List Comprehension</a></li>\n</ul>\n</li>\n<li><a href=\"#numpy\">NumPy</a><ul>\n<li><a href=\"#arrays\">Arrays</a></li>\n<li><a href=\"#slice\">Slicing</a></li>\n<li><a href=\"#funcs\">Useful Functions</a></li>\n</ul>\n</li>\n<li><a href=\"#misc\">Miscellaneous Functions</a></li>\n<li><a href=\"#qs\">Questions</a></li>\n<li><a href=\"#feedback\">Feedback</a></li>\n<li><a href=\"#checkoff\">Checkoff</a></li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "6d457c4067f4e45d6d798ca1ce4a8141",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='install-test'></a></span>\n<h1 id=\"install-test\">Install Test</h1>\n<span class=\"paragraph\">Welcome to your first marimo notebook for EE 66! Before we dive into the content of this lab, we want to make sure that all necessary packages are installed correctly.</span>\n<span class=\"paragraph\">Click on the block of code below (don't worry about what it does - we'll start covering that next lab) and press the Run button above to run it. Alternately, you can use <code>Shift + Enter</code> to execute and move to the next block, or <code>Control/Command + Enter</code> to execute and stay in the same block.</span>\n<span class=\"paragraph\">If anything strange appears (most likely a jumbled mass of text that is an error message) call over your lab TA or one of your lab assistants and they should be able to help! <strong><span style=\"color:red\"> Warnings are fine, don't worry about those.</span></strong></span>\n<h3 id=\"run-the-code-block-below-by-clicking-anywhere-inside-of-it-and-pressing-shift-enter\"><strong><span style=\"color:red\">Run the code block below by clicking anywhere inside of it and pressing Shift + Enter</span></strong></h3>\n<span class=\"paragraph\"><strong>Keep the launcher terminal open for the entire lab. Closing it stops the notebook and disconnects your session.</strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "6275899c43776cd57d539b07c6ff85f3",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "def8cd53fa86afdd95f07407c84d0e7e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='overview'></a></span>\n<h1 id=\"overview\">Overview</h1>\n<span class=\"paragraph\">This mini-lab serves as an introduction to marimo, Python, and a couple of important packages we will use throughout the semester. The lab teaches the commands and techniques used in later labs and can serve as a reference. Even if you are already comfortable with Python, we recommend trying a few of the later problems.</span>\n<span class=\"paragraph\">This lab is separated into two main parts: Guide and Questions. The Guide portion walks you through frequently used Python code, functions, and techniques. The Guide is supplemented with numerous blocks of example code to showcase concepts. The Questions portion of the lab is a collection of 10 problems meant to test your understanding of this guide. If you can answer these questions, then you have the knowledge to complete any and all programming tasks in EE 66.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "1a68aa478b0c937af3ba081c557ac61f",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='questions'></a></span>\n<h1 id=\"assistance\">Assistance</h1>\n<span class=\"paragraph\">Whenever you have a question, please raise your hand. A member of lab staff will join you shortly to help.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "57ce95201a29969ef353beae582cd189",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='questions'></a></span>\n<h1 id=\"marimo-notebook\">Marimo Notebook</h1>\n<span class=\"paragraph\">Before you get started, let's take a look at the page right now. This is what we call a marimo notebook -- an interactive interface for developing and sharing development documents. It is frequently used for data visualization projects (as you will see later in the semester) and collaborating with others.</span>\n<span class=\"paragraph\"><em>Tip:</em> marimo notebooks come with handy shortcuts. Press <code>Tab</code> while typing for autocomplete, and use the <strong>Live docs</strong> panel on the left to view documentation as you type.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "5f1bbcb6baed8b2e3cc519d80a69fd56",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='python'></a></span>\n<h1 id=\"python\">Python</h1>\n<span class=\"paragraph\">Both the labs and the homeworks in this course will require you to write some <strong>Python</strong> code. If you're new to programming, have no fear, as the assignments don't require more than just the fundamentals, which we will also go through during this lab; <strong>this is not round 2 of 61A.</strong></span>\n<span class=\"paragraph\">If you have any questions, feel free to refer to <strong><a href=\"https://docs.python.org/3/tutorial/\" rel=\"noopener noreferrer\" target=\"_blank\">the official Python tutorial</a></strong>, which contains an overview of the language and its main features.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "c13e510e8a5cd129d001dfc54268b524",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='fnvar'></a></span>\n<h2 id=\"functions-and-variables-in-python\">Functions and Variables in Python</h2>\n<span class=\"paragraph\">A function is a set of statements that takes in optional inputs, runs those statements, and then returns optional data.</span>\n<span class=\"paragraph\">Variables are containers for storing data values. These data values could be numbers, characters, words (called strings), etc. They can also point to lists or functions.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "d35cc225262fd893b1209a9c49b3db84",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "emfo",
+      "code_hash": "0ad4ab03af489e287d8ba3f25a6d9762",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "92b232661e1a3e856a7817de05ae961e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">We can write our own functions using the <code>def</code> keyword.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nWHF",
+      "code_hash": "85ff8d5dffd52b2aa39f31f087d1cb12",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "iLit",
+      "code_hash": "a5ee4e69978d6ff2d90c07490ee31d80",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='ctrl'></a></span>\n<h2 id=\"control-flow-in-python\">Control Flow in Python</h2>\n<span class=\"paragraph\">Programming languages usually contain statements that can be used to direct or \"control the flow\" of execution. This includes (but is not limited to) conditional statements such as <code>if</code>, <code>else</code>, and <code>elif</code>, and loop-control statements such as <code>while</code>, <code>for</code>, <code>break</code>, and <code>continue</code>.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZHCJ",
+      "code_hash": "5c8ce43339c101ffdad945584d3ccd0f",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"conditional-statements-if-else-elif\">Conditional Statements: (if, else, elif)</h3>\n<span class=\"paragraph\">These check for a condition and execute a set of statements accordingly.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ROlb",
+      "code_hash": "3ceb0e6ae11286ff7acd70ffb36139d0",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "qnkX",
+      "code_hash": "f537f5d2dbd5e50b02cab9316e598cfb",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "TqIu",
+      "code_hash": "9d2a0a39403ab07acf36ff41e409476a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"loop-control-statements-while-for\">Loop-Control Statements: (while, for)</h3>\n<span class=\"paragraph\">These iterate over a set of statements a specified number times or as long as a specified condition is true.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Vxnm",
+      "code_hash": "230120323a611295ada3d56cb9e16237",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "DnEU",
+      "code_hash": "ce37e1d96e1f854bc458f03fbf6fa557",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Unlike while loops, which can theoretically run \"forever\" given the right condition, for loops serve a different purpose -- iterating a fixed number of times. For loops in Python expect an iterable object -- something that Python can iterate over, such as a list which Python can go through number by number -- to control the number of iterations. The example below is \"equivalent\" to the while loop in the previous example.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ulZA",
+      "code_hash": "c1cd7c556a63772fac6410ef972c879d",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "ecfG",
+      "code_hash": "5ab46c777fd99eee5b0f3818bb9035fb",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Pvdt",
+      "code_hash": "a013d626d9fb401813a5db30297fb06b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">All of the loop examples so far have terminated with some sort of stopping condition (ex. i &lt; 5, i in range(0,5), element in char_list). But what if we wanted to exit a loop early? Or, what if we wanted to immediately go to the next loop iteration? These two changes can be applied using the <strong>break</strong> and <strong>continue</strong> statements, respectively.</span>\n<span class=\"paragraph\"><strong>break</strong> will completely break out of the <code>for</code> or <code>while</code> loop it is in and skip any iterations it would have potentially gone through afterwards.</span>\n<span class=\"paragraph\"><strong>continue</strong> will skip only the current iteration and jump to the beginning of the next one.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZBYS",
+      "code_hash": "59746dbfbf22db1fedeba903f1804f28",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "aLJB",
+      "code_hash": "a0fa1d515ca6ecec0031b3e9b57724d8",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "nHfw",
+      "code_hash": "4d0c95d6cd8dc7e2459d7e3fe88fcd13",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">In the first loop, <code>continue</code> skips the <code>print</code> statement when the current candy is <code>Kit-Kat</code>. In the second loop, it skips every item with an odd index. <strong>Notice how placing <code>continue</code> before the work you want to skip changes the result.</strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "xXTn",
+      "code_hash": "af2261dd30f4ff573b22292c9b446416",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='lst'></a></span>\n<h2 id=\"list-comprehension\">List Comprehension</h2>\n<span class=\"paragraph\">There are multiple ways of creating lists in Python. If you recall from the first discussion, a list is a mutable array of data. They can be created using square brackets [ ]. Elements in a list are separated by commas. Elements can be of any type (int, string, float, etc.).</span>\n<span class=\"paragraph\">Important Python List functions:</span>\n<ul>\n<li><code>'+'</code> joins lists and creates a <em>new</em> list.</li>\n<li><code>len(x)</code> to get the length of list <code>x</code></li>\n</ul>\n<span class=\"paragraph\">Next, we will explore the idea of list comprehension, which is a compact way of creating a list from a for-loop in a single line. Please keep in mind that list comprehension is just a style suggestion; any list comprehension can be expanded to a fully fleshed out control-loop block. However, the advantage of list comprehensions is their compact yet expressive syntax.</span>\n<span class=\"paragraph\"><strong>For the example below, our goal is to create a list of the squares of each even integer in the range from 0 to 10 (inclusive).</strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "AjVT",
+      "code_hash": "6770b84063c69daac3712bd3716c8836",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "pHFh",
+      "code_hash": "b6e3babbe9c4cf4d8ef32947d39c55ef",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "NCOB",
+      "code_hash": "4b09ad4b0b572907c2aa1704c54a965e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">The syntax for a list comprehension is as follows:<br>\n<strong>list = <span style=\"color:green\">[</span></strong><span style=\"color:red\">function(</span><strong>ITEM</strong><span style=\"color:red\">)</span> <strong><span style=\"color:green\">for</span></strong> <strong>ITEM</strong> <strong><span style=\"color:green\">in</span></strong> <span style=\"color:orange\">ITERABLE_OBJECT</span> <strong><span style=\"color:green\">if</span></strong> <span style=\"color:blue\">condition(</span><strong>ITEM</strong><span style=\"color:blue\">)</span><strong><span style=\"color:green\">]</span></strong></span>\n<span class=\"paragraph\">In example 8b above:<br></span>\n<ul>\n<li><strong>ITEM</strong> = i<br></li>\n<li><span style=\"color:orange\">ITERABLE_OBJECT</span> = range(11)<br></li>\n<li><span style=\"color:red\">function()</span> = raise <strong>ITEM</strong> to the second power<br></li>\n<li><span style=\"color:blue\">condition()</span> = is <strong>ITEM</strong> even?<br></li>\n</ul>\n<span class=\"paragraph\">A couple notes:</span>\n<ul>\n<li>list comprehensions DO NOT require a function or condition</li>\n<li>list comprehensions can have nested for-loops. For example, <code>[(row, col) for row in range(2) for col in range(3)]</code> creates all six <code>(row, col)</code> pairs.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "aqbW",
+      "code_hash": "fe1104978b8a5bf18f7e04c734f3e3d6",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='numpy'></a></span>\n<h1 id=\"numpy\">NumPy</h1>\n<h3 id=\"pronounced-numpie\">Pronounced NumPIE</h3>\n<span class=\"paragraph\">From the NumPy website, \"NumPy is the fundamental package for scientific computing with Python. It contains among other things: a powerful N-dimensional array object.\" For the purposes of this course, we primarily use NumPy for its fast and fancy matrix functions. In general, Python list operations are slow; NumPy functions exploit the NumPy array object to \"vectorize\" the code, which usually improves the runtime of matrix calculations. <strong>As a general rule of thumb, if a task involves vectors or matrices, you should resort to NumPy.</strong> In addition to speeding up basic operations, NumPy contains an enormous library of matrix functions, so if you ever need to manipulate a vector or matrix, NumPy most likely already has a function implemented to suit your needs.</span>\n<span class=\"paragraph\"><strong><a href=\"https://numpy.org/doc/stable/\" rel=\"noopener noreferrer\" target=\"_blank\">NumPy documentation</a></strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TRpd",
+      "code_hash": "264cd28f39586ece689e59c5038a57e7",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong><span style=\"color:red\">Run the cell below to import the packages needed to complete this lab.</span></strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TXez",
+      "code_hash": "700578e210ddaa7584015960cc0774d6",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><div class=\"language-python codehilite\"><pre><span></span><code><span class=\"kn\">import</span><span class=\"w\"> </span><span class=\"nn\">numpy</span><span class=\"w\"> </span><span class=\"k\">as</span><span class=\"w\"> </span><span class=\"nn\">np</span> <span class=\"c1\"># from now on, we can access numpy functions by referencing \"np\" instead of numpy</span>\n</code></pre></div></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dNNg",
+      "code_hash": "22e55f89b179a7e2726cc827adca851c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='arrays'></a></span>\n<h2 id=\"creating-a-numpy-array-object\">Creating a NumPy array object</h2>\n<span class=\"paragraph\">NumPy is centered around the <code>numpy.array()</code> class. This array object is extremely useful, however, it is often confused with built-in Python lists, particularly when trying to represent vectors.</span>\n<span class=\"paragraph\">If you are not familiar with Python lists, a list is a sequence of numbers, like <code>1,2,3,4</code>, stored together. You may also see the term tuple used in notebooks and in the NumPy library. You can think of a tuple as a Python list that you cannot modify.</span>\n<span class=\"paragraph\">A NumPy array is similar to a Python list in the sense that it also stores multiple numbers, but, as you will see later, NumPy arrays and Python Lists are NOT synonymous; you <strong>cannot</strong> simply apply functions to NumPy arrays as if they were Python Lists.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "yCnT",
+      "code_hash": "01e5aaad1593c834181234eb7c40bc4d",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "wlCL",
+      "code_hash": "71a9de18ba864b7a1cbd9d2b4f7f20d1",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "kqZH",
+      "code_hash": "8b52b8ea0a90253c827d55ab2657dca7",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "wAgl",
+      "code_hash": "76fb2a4b22cb78ef6cf83ab2cac1450a",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "rEll",
+      "code_hash": "691573c8402e2b2e3af9727523ffc83b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong>Note:</strong> Dimensions in NumPy are always provided as a list/tuple. You should be able to see this in the usage of functions such as <code>zeros</code>, <code>empty</code>, <code>ones</code>, <code>reshape</code>, etc.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dGlV",
+      "code_hash": "396b7593cb699f12f00812a3225b9591",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"numpy-array-vs-python-list\">NumPy array vs. Python list</h3>\n<span class=\"paragraph\">Most arithmetic operations apply to NumPy arrays in element-wise fashion. This is in contrast with arithmetic operations for Python lists, which apply via concatenation.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SdmI",
+      "code_hash": "919ee7260e4532a631659409ece5e62a",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "lgWD",
+      "code_hash": "b19d79e041001c845261960547bbfe0e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='slice'></a></span>\n<h2 id=\"numpy-array-slicing\">NumPy array slicing</h2>\n<span class=\"paragraph\">Array slicing is a technique in Python (and other languages) that programmers use to extract specific index-based information from an array. Array slicing answers queries such as, \"What are the first/last n elements in this array?\", \"What are the elements in the first r rows and first c columns of this matrix?\", \"What is every nth element in this array?\"</span>\n<span class=\"paragraph\"><strong>Zero indexing:</strong> Python uses zero indexing. This means that all arrays/lists in Python start with 0 as the index of the first element. For example, in a list <code>lst = [a, b, c]</code>, the element at index 0 <code>lst[0]</code> is <code>a</code>, and the element at index 1 <code>lst[1]</code> is <code>b</code>. Similarly, <code>c</code> would be at index 2.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "yOPj",
+      "code_hash": "41125786590daa30f59d71fae938b5f4",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "fwwy",
+      "code_hash": "2eb5f90b298db33299e0e281934fd5a3",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><strong><span style=\"color:red\">Slicing includes the start index and excludes the end index, i.e. <code>simple_arr[16:26]</code> means to extract the values in <code>simple_arr</code> at indices in the range <code>[16,26)</code> which is the same as <code>[16,25]</code> since indices can only be integers.</span></strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "LJZf",
+      "code_hash": "49b3aa5c00a45dfb1c23d6e9d3657ec5",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "urSm",
+      "code_hash": "4848ef963e85761e53d5b8fb52f3c727",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "jxvo",
+      "code_hash": "ca48f731e30240dd8a23235bc55794c0",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "mWxS",
+      "code_hash": "b283ff976c44e49afc31a966a2900596",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"slicing-summary\">Slicing Summary</h3>\n<span class=\"paragraph\">Slicing a NumPy array arr follows the syntax below:<br> <br>\narr[<span style=\"color:green\">row_start_index</span><span style=\"color:blue\">:</span><span style=\"color:red\">row_end_index</span><span style=\"color:blue\">:</span><span style=\"color:orange\">row_step_size</span> , <span style=\"color:green\">col_start_index</span><span style=\"color:blue\">:</span><span style=\"color:red\">col_end_index</span><span style=\"color:blue\">:</span><span style=\"color:orange\">col_step_size</span>]</span>\n<ul>\n<li><span style=\"color:green\">start indices</span> are inclusive and default to 0</li>\n<li><span style=\"color:red\">end indices</span> are exclusive and default to len(arr)</li>\n<li><span style=\"color:orange\">step sizes</span> default to 1</li>\n</ul>\n<span class=\"paragraph\">arr[<span style=\"color:green\">start_index</span><span style=\"color:blue\">:</span><span style=\"color:red\">end_index</span><span style=\"color:blue\">:</span><span style=\"color:orange\">step_size</span>] slices rows according to the specified arguments while selecting all columns.</span>\n<span class=\"paragraph\">arr[ : , <span style=\"color:green\">start_index</span><span style=\"color:blue\">:</span><span style=\"color:red\">end_index</span><span style=\"color:blue\">:</span><span style=\"color:orange\">step_size</span>] slices columns according to the specified arguments while selecting all rows.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "CcZR",
+      "code_hash": "fd63b9425147f52b9d85a95ec1697bf4",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"numpy-array-reshaping\">NumPy array reshaping</h3>\n<span class=\"paragraph\">Reshaping is useful when you want to do something such as turn a vector into a matrix or vice-versa. We want to be able to do this because it is often easier to construct the desired array as a vector then reshape the vector into a matrix.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "YWSi",
+      "code_hash": "c63fc910c19a4da183cf8a1f3a2e60b4",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "zlud",
+      "code_hash": "7a43278ccc1017ce2c14cb16a2f7a85a",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "tZnO",
+      "code_hash": "2559f15c10a64518696cc876c086f3fe",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='funcs'></a></span>\n<h2 id=\"useful-numpy-functions-transpose-linalginv-dot-concatenate-vstack-hstack-max-argmax\">Useful NumPy functions: (transpose(), linalg.inv(), dot(), concatenate(), vstack(), hstack(), max(), argmax())</h2>\n<span class=\"paragraph\"><strong><a href=\"https://numpy.org/doc/stable/\" rel=\"noopener noreferrer\" target=\"_blank\">NumPy documentation</a></strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "xvXZ",
+      "code_hash": "7225de4e15759b618c502844779819a8",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "CLip",
+      "code_hash": "baab87f92f1a724545190fc0cde02ade",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "YECM",
+      "code_hash": "467d02a209892cba7165c04daa167607",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "cEAS",
+      "code_hash": "200fe060fb7dc217ac2eac2c1da8fb86",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "iXej",
+      "code_hash": "0a755d52d4976605398788de9782dfb0",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "EJmg",
+      "code_hash": "86224bf4378983e00042ff0e355ce89a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='misc'></a></span>\n<h1 id=\"miscellaneous-functions\">Miscellaneous Functions</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "UmEG",
+      "code_hash": "07a67189f6aa1fa98103292fa3564836",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "vEBW",
+      "code_hash": "af049ac76620b86d1804b9be020752de",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "kLmu",
+      "code_hash": "6691783b27553560ce26bce896e2e531",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='qs'></a></span>\n<h1 id=\"questions\">Questions</h1>\n<span class=\"paragraph\">These questions are in no particular order (except for question 0, do that one first). The questions range in difficulty; some are one-liners, others require a lot more thinking. The questions are also labeled with their difficulties on a scale of 1 to 3 (with 1 being the easiest and 3 the hardest). Don't be discouraged if you hit a roadblock. Talk to your neighbors and ask for help from the lab staff.</span>\n<span class=\"paragraph\"><strong><span style=\"color:red\">You are not expected to get all of the questions correct on the first try. This is not a Python course, and the questions here are harder than what you will see in future labs. This marimo notebook is a Python introduction that you can refer back to.</span></strong></span>\n<h3 id=\"question-0\">Question 0</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">To test your code, run the cell below to load the autograder. After each question, click its clearly labeled <code>Test Q#</code> button. Use <code>Test All</code> before checkoff. The autograder is purposefully not very verbose.</span></strong></span>\n<span class=\"paragraph\">NumPy has already been imported as <code>np</code>; use the <code>np.</code> prefix for NumPy functions.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "IpqN",
+      "code_hash": "ef46ef40e0a2ef12b7245e3173cbd00d",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "dxZZ",
+      "code_hash": "38b140970599d66da3ad3d9f3050917a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"question-1-difficulty-1\">Question 1 (Difficulty: 1)</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">Search the NumPy documentation and/or the web for a NumPy function that can solve a system of linear equations of the form <code>Ax=b</code>. Once you've found the package and function, insert into the <code>func</code> placeholder below. Often Googling <code>Numpy</code> followed by the function you'd like will give you exactly what you want. Ex: Try searching <code>Numpy Matrix Solver</code></span></strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dlnW",
+      "code_hash": "a01a6aeded1c67ca39a74bd1b86d66b5",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "TTti",
+      "code_hash": "a2147231a2eabb7871aa3bc3dc69fac3",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "RKFZ",
+      "code_hash": "5f0751fef5a64202bbfa0cd17fbc0abd",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"question-2-difficulty-1\">Question 2 (Difficulty: 1)</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">Given NumPy array A, return an array that consists of every entry of A that has an even row index and an odd column index. </span></strong></span>\n<span class=\"paragraph\">See <a href=\"#slice\">slicing</a> for examples on how to do array slicing.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "IaQp",
+      "code_hash": "cc32e2ca081a15c522b015bf5f427d9e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "IWgg",
+      "code_hash": "7df7e9c845da2cca23f0fa7fb2040c1a",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "fCoF",
+      "code_hash": "a5d29a1e3c7b8ffc7351807a4812ef55",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"question-3-difficulty-2\">Question 3  (Difficulty: 2)</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">Given an MxN NumPy array, first find the indices of the maximum value in each row of the array, then return the maximum index.</span></strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "LkGn",
+      "code_hash": "6a705f12c9b1175c01cacd5bd9c0f929",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "zVRe",
+      "code_hash": "cbf3a421282a4b926a17b6b79f7f111c",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "woaO",
+      "code_hash": "d7d1745189a46608b763a2a619f4e962",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "HnMC",
+      "code_hash": "231f2e63ccd56a5eb3329d0c198545a1",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"question-4-difficulty-2\">Question 4  (Difficulty: 2)</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">Given two MxN NumPy arrays, copy every-other column of array A to the right side of array B and return the new array.</span></strong></span>\n<span class=\"paragraph\">See <a href=\"#slice\">slicing</a> for examples on how to do array slicing.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "wadT",
+      "code_hash": "ea2abd5cf2d78cd7771b07ed04923787",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "VCRE",
+      "code_hash": "88d703fce212aaffa3efe4faaed3b322",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "hgqU",
+      "code_hash": "3b43f0e86bf418ee4b14f958cb5fceee",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "PSUk",
+      "code_hash": "2dbdd2d3548cd59a899fbff5340f310c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"question-5-difficulty-2\">Question 5  (Difficulty: 2)</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">For any given N, u = [1,2,3,...,N] and v = [2026,2027,2028,...,2026+N-1]. Write a function that returns a vector that contains the following sequence: [1<code>*</code>2026, 2<code>*</code>2027, 3<code>*</code>2028,...,N<code>*</code>(2026+N-1)]. </span></strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "mfOT",
+      "code_hash": "f20ba93f78d40898b0d8c1619df75daa",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "vGiW",
+      "code_hash": "791b460c0fd32ed914ccae263211e6e5",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "SYQT",
+      "code_hash": "e2081fdc0d677c4c1083cb4d867f5d39",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "bMrW",
+      "code_hash": "d9aabeb811b635485583552a4bef2397",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"question-6-difficulty-1\">Question 6  (Difficulty: 1)</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">Given a NumPy vector v, shift all of the elements in v by n steps to the right; values that \"fall off\" the right end of v get inserted at the beginning of v, thus the length of v is preserved. You can either attempt to implement this on your own, or, (hint hint) try searching for a related NumPy function that does some/all of the work for you... </span></strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PSQn",
+      "code_hash": "5648a91f93c83b9a2799c69bf6e05c56",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "OfTS",
+      "code_hash": "9e1bea4e695b22afca92743bee61530e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "lQxp",
+      "code_hash": "89b968f68921ff8a64be294a2ea47cf4",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"question-7-difficulty-2\">Question 7  (Difficulty: 2)</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">Given an MxM identity matrix, convert this to an (M-N)x(M-N) identity matrix WITHOUT using numpy.eye().</span></strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Plbk",
+      "code_hash": "f5ea04b36b97d9784982555724e7a6a5",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "rSYo",
+      "code_hash": "3a35025277a22e3856ca36cabccf5a64",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "HuZB",
+      "code_hash": "8d35dd54cc3a30cb3acb174192898a22",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"question-8-difficulty-3\">Question 8  (Difficulty: 3)</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">Given a square NxN NumPy array A, return a Python list of the values along the diagonal of A, sorted in descending order.</span></strong></span>\n<span class=\"paragraph\"><code>np.sort</code> sorts in ascending order and does not have a <code>descending</code> keyword. You can reverse an ascending array with <code>[::-1]</code>, or convert to a list and use <code>sorted(..., reverse=True)</code>.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "WfYj",
+      "code_hash": "bedb5dfa16e4dc6d877d19cf010d3a96",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Ynfw",
+      "code_hash": "b6adaeed727cc670ee473b557635d024",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "LqFA",
+      "code_hash": "e4f14052ffd389eea6c60f6e00670c55",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "uDnK",
+      "code_hash": "0c0ade4429122ce6f92efe6a627862dc",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"question-9-difficulty-3\">Question 9 (Difficulty: 3)</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">Given an MxN matrix, A, and an NxM matrix, B, concatenate (side-by-side) the first p rows of A with the transpose of the last p columns of B.</span></strong></span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "aWBL",
+      "code_hash": "5f92da0719ae832a3099975c102b89ec",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "MIsd",
+      "code_hash": "22a69639858011ae41527d04361a3de5",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "IrqS",
+      "code_hash": "f3a0f8d3883dd19cb68e1d1368087259",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"question-10-difficulty-3\">Question 10 (Difficulty: 3)</h3>\n<span class=\"paragraph\"><strong><span style=\"color:red\">Given two differently sized matrices, \"pad\" the matrices with the smaller dimensions with rows/columns of zeros until they are the same size as one another. Add the padding to the bottom (if adding rows) and to the right (if adding columns). </span></strong></span>\n<span class=\"paragraph\">See <a href=\"#slice\">slicing</a> for examples on how to do array slicing. Recall that you can assign to a slice.</span>\n<span class=\"paragraph\">This is typically the hardest question for students.</span>\n<span class=\"paragraph\">Note: You can return multiple values with commas! For example, use <code>return A, B</code> to return both A and B.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Lpqv",
+      "code_hash": "68557ccc8e909d522095a1449682775e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "upgv",
+      "code_hash": "eeb51df1d1da0d73aae875e1cd4c67ea",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "WJUG",
+      "code_hash": "2c1952744fd0329c633f4f6308603778",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "pCao",
+      "code_hash": "daccbddfe3b616938d4f0d7fe5d0933a",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "wEIy",
+      "code_hash": "bc4ac5fe2e996f9ea12ec87597b8ce5b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='feedback'></a></span>\n<h2 id=\"feedback\">Feedback</h2>\n<span class=\"paragraph\">If you have any feedback to give the teaching staff about the course (lab content, staff, etc), you can submit it through this Google form. Responses are <strong>fully anonymous</strong> and responses are actively monitored to improve the labs and course. Completing this form is <strong>not required</strong>.</span>\n<span class=\"paragraph\"><a href=\"https://forms.gle/ezDiDHxYRHN7xtdV9\" rel=\"noopener noreferrer\" target=\"_blank\">Anonymous feedback Google form</a></span>\n<span class=\"paragraph\"><em>If you have a personal matter to discuss or need a response to your feedback, please contact <a href=\"mailto:ee66.lab@berkeley.edu\"><a href=\"&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#101;&#54;&#54;&#46;&#108;&#97;&#98;&#64;&#98;&#101;&#114;&#107;&#101;&#108;&#101;&#121;&#46;&#101;&#100;&#117;\">&#101;&#101;&#54;&#54;&#46;&#108;&#97;&#98;&#64;&#98;&#101;&#114;&#107;&#101;&#108;&#101;&#121;&#46;&#101;&#100;&#117;</a></a> and/or <a href=\"mailto:ee66@berkeley.edu\"><a href=\"&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#101;&#54;&#54;&#64;&#98;&#101;&#114;&#107;&#101;&#108;&#101;&#121;&#46;&#101;&#100;&#117;\">&#101;&#101;&#54;&#54;&#64;&#98;&#101;&#114;&#107;&#101;&#108;&#101;&#121;&#46;&#101;&#100;&#117;</a></a></em>.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "wlyU",
+      "code_hash": "072d8de3ee258de8c26b947cf636cf52",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\"><a id='checkoff'></a></span>\n<h2 id=\"checkoff\">Checkoff</h2>\n<span class=\"paragraph\">To receive credit, all labs will require the submission of a checkoff Google form. This link will be at the bottom of each lab. Both partners should fill out the form (you should have one submission per person), and feel free to use the same Google account/computer to fill it out as long as you have the correct names and student IDs.</span>\n<span class=\"paragraph\"><a href=\"https://forms.gle/pwqopqgEaHvv7GUk9\" rel=\"noopener noreferrer\" target=\"_blank\">Fill out the checkoff Google form.</a></span>\n<span class=\"paragraph\">Be ready to explain:</span>\n<ul>\n<li>How to get an array's dimensions with <code>.shape</code>, and why the result is a tuple.</li>\n<li>Why <code>np.concatenate(..., axis=0)</code> acts like <code>vstack</code> while <code>axis=1</code> acts like <code>hstack</code> for two-dimensional arrays.</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PieA",
+      "code_hash": "69ce2541aa95f774a2a3e8de25c1b7dc",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"marimo-instructions-do-not-change\">Marimo Instructions [Do Not Change]</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "GrQN",
+      "code_hash": "a34ee5cb832fb28737f3526cab3b9f5a",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Ilkb",
+      "code_hash": "dba90da2430db31cdc41b01d7d345f26",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "mySd",
+      "code_hash": "9322ba1419665bc358a4c15237f5b36f",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "vGkK",
+      "code_hash": "0528b5b153dadfdc31d5f292ddd862eb",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "zmIa",
+      "code_hash": "0f61b61fe49b9d0c48aa755195cd48fe",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "NOfw",
+      "code_hash": "d048d413c1f7a2c852cc6305a95d082d",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "jXAc",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+numpy>=1.26
+matplotlib>=3.8
+otter-grader>=6.0
+scipy>=1.11
+pandas>=2.0
+ipython>=8.0
+notebook>=7
+marimo>=0.18
