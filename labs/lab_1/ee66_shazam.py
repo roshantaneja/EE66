@@ -15,13 +15,14 @@
 
 import marimo
 
-__generated_with = "0.18.4"
+__generated_with = "0.25.1"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -74,7 +75,18 @@ def _():
     from scipy.ndimage import maximum_filter
     from shazam_utils import hashing
     import autograder
-    return autograder, hashing, ipd, maximum_filter, np, pd, plt, signal, wavfile
+
+    return (
+        autograder,
+        hashing,
+        ipd,
+        maximum_filter,
+        np,
+        pd,
+        plt,
+        signal,
+        wavfile,
+    )
 
 
 @app.cell(hide_code=True)
@@ -253,7 +265,11 @@ def centered_magnitude_spectrum(np):
         """
 
         # TODO YOUR CODE HERE
+
+        output = np.abs(np.fft.ifftshift(np.fft.fft(sig)))
+        return output
         ...
+
     return (centered_magnitude_spectrum,)
 
 
@@ -274,7 +290,7 @@ def _(mo):
 
 
 @app.cell
-def _(coldplay, fs, np, plt):
+def _(centered_magnitude_spectrum, coldplay, fs, np, plt):
     coldplay_cropped = coldplay[: 10 * fs]
     coldplay_freqs = centered_magnitude_spectrum(coldplay_cropped)
     plt.figure(figsize=(16, 4), dpi=200)
@@ -306,7 +322,7 @@ def _(mo):
 
 
 @app.cell
-def _(coldplay, fs, np, plt):
+def _(centered_magnitude_spectrum, coldplay, fs, np, plt):
     coldplay_freqs_1 = centered_magnitude_spectrum(coldplay[:fs])
     coldplay_freqs_2 = centered_magnitude_spectrum(coldplay[fs : 2 * fs])
     coldplay_freqs_3 = centered_magnitude_spectrum(coldplay[2 * fs : 3 * fs])
@@ -558,7 +574,13 @@ def compute_spectrogram(np, signal):
         """
 
         # TODO YOUR CODE HERE
+
+        f, t, spect = signal.spectrogram(audio, fs, nperseg=4096)
+
+        return f, t, 20 * np.log10(spect + epsilon_db_constant)
+    
         ...
+
     return (compute_spectrogram,)
 
 
@@ -577,7 +599,7 @@ def _(mo):
 
 
 @app.cell
-def _(coldplay_1, fs_1, killers, plt):
+def _(coldplay_1, compute_spectrogram, fs_1, killers, plt):
     f1_1, t1_1, coldplay_spect = compute_spectrogram(
         fs_1, coldplay_1, epsilon_db_constant=1e-12
     )
@@ -683,32 +705,32 @@ def _(coldplay_spect, maximum_filter, np):
         spect - the spectrogram of an unknown audio track to find peaks from
         neighborhood_size - the size of the maximum filter
         amp_thresh - amplitude threshold to include peaks in result
-    
+
         Output (np.ndarray, np.ndarray):
         Returns a tuple of the peak indices on the frequency 
         and time axes (each as NumPy arrays) for the provided spectrograph.
-    
+
         See:
         maximum_filter
         np.nonzero
         """
 
         # Apply a Maximum Filter
-        max_spect = ...
+        max_spect = maximum_filter(spect, neighborhood_size)
 
         # Compute the mask
-        mask = ...
+        mask = spect == max_spect
 
         # Filter out tiny peaks
         mask &= spect > amp_thresh
 
         # Get the indices of the peaks
-        freq_indices, time_indices = ...
+        freq_indices, time_indices = np.nonzero(mask)
 
         return freq_indices, time_indices
 
     # Call peak_finding with the spectrogram for Viva La Vida
-    freq_indices, time_indices = ...
+    freq_indices, time_indices = peak_finding(coldplay_spect)
     return freq_indices, peak_finding, time_indices
 
 
@@ -820,23 +842,24 @@ def _(hashing, np, peak_finding, signal):
         audio - the full audio to fingerprint; either coldplay or killers
         neighborhood_size - the size of the maximum filter
         amp_thresh - amplitude threshold to include peaks in result
-    
+
         Output (list[str, int]):
         A list of hashes representing the "fingerprint" of the given audio.
         """
         audio = np.mean(audio, axis=1)
-    
+
         # Compute the spectrogram of the single channel audio
-        f1, t1, spect = ...
+        f1, t1, spect = signal.spectrogram(audio, fs, nperseg=4096)
 
         # Find the peaks (Use function from Q2a)
-        freq_indices, time_indices = ...
-    
+        freq_indices, time_indices = peak_finding(spect, neighborhood_size=neighborhood_size, amp_thresh=amp_thresh)
+
         # Compute the hashes
-        hashes = ...
-    
+        hashes = hashing(f1, t1, freq_indices=freq_indices, time_indices=time_indices)
+
         # Return list of hashes
         return hashes
+
     return (fingerprint,)
 
 
@@ -877,6 +900,7 @@ def _(fingerprint, pd):
         counts = db_matches.groupby("Song").size()
         counts = counts / counts.sum()
         return counts.idxmax(), counts.max() * 100
+
     return (detect,)
 
 
@@ -913,7 +937,8 @@ def get_20_second_segment(fs, audio):
     Example:
     get_20_second_segment(killers) == killers[X seconds:(X + 20 seconds)]
     """
-    
+
+    return audio[: 20 * fs]
     ...
 
 
@@ -949,7 +974,7 @@ def _(wavfile):
 
 
 @app.cell
-def basic_detect_test(detect, get_20_second_segment):
+def basic_detect_test(detect):
     def basic_detect_test(fs, audio):
         """
         Input:
@@ -968,7 +993,9 @@ def basic_detect_test(detect, get_20_second_segment):
         detect
         """
 
+        return detect(fs, get_20_second_segment(fs, audio))
         ...
+
     return (basic_detect_test,)
 
 
@@ -1013,18 +1040,21 @@ def _(np):
         """
         Input:
         audio_segment - an audio segment from an unknown track
-    
+
         Output:
         Returns the audio segment with added Gaussian noise.
-    
+
         See:
         Problem description (for quantities)
         np.random.normal
         """
-    
+
         # TODO YOUR CODE HERE
 
+        return audio_segment + np.random.normal(loc=NOISE_MEAN, scale=NOISE_STANDARD_DEVIATION, size=audio_segment.shape)
+
         ...
+
     return (add_gaussian_noise,)
 
 
@@ -1047,7 +1077,10 @@ def gaussian_noise_detect_test(add_gaussian_noise, detect):
         """
 
         # TODO YOUR CODE HERE
+
+        return detect(fs, add_gaussian_noise(audio_segment))
         ...
+
     return (gaussian_noise_detect_test,)
 
 
@@ -1237,7 +1270,8 @@ def _(fingerprint, wavfile):
             )
             for hash_pair in hashes:
                 db_writer.writerow([hash_pair[0], hash_pair[1], filename])
-    return (add_to_db,)
+
+    return
 
 
 @app.cell(hide_code=True)
@@ -1249,7 +1283,7 @@ def _(mo):
 
 
 @app.cell
-def _(add_to_db):
+def _():
     # Optional: uncomment and set this to add your own WAV file to the database.
     # my_wav_filepath = "public/YourSong.wav"
     # add_to_db(my_wav_filepath)
@@ -1265,7 +1299,7 @@ def _(mo):
 
 
 @app.cell
-def _(detect, wavfile):
+def _():
     # Optional: uncomment and set this to identify your own WAV file.
     # fs_3, audio = wavfile.read("public/YourSong.wav")
     # detect(fs_3, audio)
@@ -1351,7 +1385,15 @@ def _(get_signals):
 
 
 @app.cell
-def _(frequency_slider, get_signals, magnitude_slider, np, offset_slider, plt):
+def _(
+    centered_magnitude_spectrum,
+    frequency_slider,
+    get_signals,
+    magnitude_slider,
+    np,
+    offset_slider,
+    plt,
+):
     x_values = np.linspace(0, 0.1, 1000)
     x_values1 = np.linspace(0, 1, 1000)
     aggregate_signal = np.zeros(x_values.shape)
@@ -1440,7 +1482,6 @@ def _(mo):
 
     answer_3_1 = mo.ui.text_area(placeholder="Write your response here...", label="Your answer", rows=3, full_width=True)
     return answer_1_1, answer_1_2, answer_1_3, answer_2_1, answer_3_1
-
 
 
 if __name__ == "__main__":
